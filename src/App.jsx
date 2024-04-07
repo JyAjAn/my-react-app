@@ -29,8 +29,8 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
       <di>
-  <PokemonCard/>
-</di>
+        <PokemonCard/> 
+      </di>
     </>
   )
 }
