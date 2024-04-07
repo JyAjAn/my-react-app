@@ -1,38 +1,53 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import PokemonCard from "./Components/PokemonCard"
+import './App.css';
+import PokemonCard from "./Components/PokemonCard";
+import { useState } from "./Components/PokemonCard";
+import NavBar from "./Components/NavBar";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [pokemonIndex, setpokemonIndex] = useState(0);
+  // const pokemonList = [
+  //   {
+  //     name: "Bulbasaur",
+// @@ -12,12 +12,39 @@ function App() {
+  //   },
+  //   {
+  //     name: "Mew",
+  //     imgSrc:"https://assets.pokemon.com/assets/cms2/img/pokedex/full/151.png"
+  //     imgSrc: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/151.png",
+  //   },
+  //   {
+  //     name: "charmander",
+  //     imgSrc:
+  //       "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
+  //   },
+  //   {
+  //     name: "squirtle",
+  //     imgSrc:
+  //       "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png",
+  //   },
+  //   {
+  //     name: "pikachu",
+  //     imgSrc:
+  //       "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
+  //   },
+  // ];
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-      <di>
-  <PokemonCard/>
-</di>
-    </>
-  )
-}
+      {/* <PokemonCard pokemon={pokemonList[1]} /> */}
+      <PokemonCard pokemon={pokemonList[pokemonIndex]} />
+      <NavBar pokemonIndex = {pokemonIndex} pokemonList= {pokemonList} setpokemonIndex={setpokemonIndex}/>
 
-export default App
+      {pokemonIndex > 0 ? (
+        <button onClick={() => setpokemonIndex(pokemonIndex - 1)}>
+          Précedent
+        </button>
+      ) : null}
+
+      {pokemonIndex < pokemonList.length - 1 && (
+        <button onClick={() => setpokemonIndex(pokemonIndex + 1)}>
+          Suivant
+        </button>
+      )}
+    </>
+  );
+}
